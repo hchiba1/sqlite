@@ -25,6 +25,13 @@ table2                table38               table8
 table20               table39               table9 
 ```
 
+```
+$ echo '.schema table11' | sqlite3 db/development.sqlite3
+CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
+CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
+CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
+```
+
 ### 自前のラッパーを使う
 ```
 $ sqlite3.pl db/development.sqlite3
@@ -63,13 +70,6 @@ $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 9       ENSG00000010319 SEMA3G  03      1       3       5       6       0
 10      ENSG00000010379 SLC6A13 12      1       11      19225   19226   0
 ...
-```
-
-```
-$ echo '.schema table11' | sqlite3 db/development.sqlite3
-CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
-CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
-CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
 ```
 
 ### distributionのロード例
