@@ -1,6 +1,7 @@
 # sqlite3の操作例
 
 ### `sqlite3`コマンドを使う
+テーブルの一覧を見る
 ```
 $ echo '.tables' | sqlite3 db/development.sqlite3
 ar_internal_metadata  table21               table4              
@@ -24,7 +25,7 @@ table19               table37               table7
 table2                table38               table8              
 table20               table39               table9 
 ```
-
+スキーマを見る
 ```
 $ echo '.schema table11' | sqlite3 db/development.sqlite3
 CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
