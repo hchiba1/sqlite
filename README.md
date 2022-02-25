@@ -65,6 +65,13 @@ $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 ...
 ```
 
+```
+$ echo '.schema table11' | sqlite3 db/development.sqlite3
+CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
+CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
+CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
+```
+
 ### distributionのロード例
 ```
 $ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 db/development.sqlite3
