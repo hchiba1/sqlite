@@ -1,5 +1,6 @@
-# sqlite
+# sqlite3の操作例
 
+### `sqlite3`コマンドを使う
 ```
 $ echo '.tables' | sqlite3 db/development.sqlite3
 ar_internal_metadata  table21               table4              
@@ -24,6 +25,7 @@ table2                table38               table8
 table20               table39               table9 
 ```
 
+### 自前のラッパーを使う
 ```
 $ sqlite3.pl db/development.sqlite3
 schema_migrations
@@ -63,6 +65,7 @@ $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 ...
 ```
 
+### distributionのロード例
 ```
 $ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 db/development.sqlite3
 ```
