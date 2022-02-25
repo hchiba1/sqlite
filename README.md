@@ -77,7 +77,7 @@ $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 ```
 
 ### distributionのロード例
-`attributes`に追加する
+テーブル`attributes`に追加する
 ```
 echo 'insert into attributes values(54, "protein_helix_content_ratio_uniprot", "uniprot", "distribution");' | sqlite3 db/development.sqlite3
 ```
