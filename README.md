@@ -79,5 +79,5 @@ $ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCRE
 ```
 
 ```
-$ sql.load_json.pl -t table54 protein_helix_content_ratio.json | sqlite3 db/development.sqlite3
+$ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 db/development.sqlite3
 ```
