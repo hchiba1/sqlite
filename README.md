@@ -34,6 +34,7 @@ CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_v
 ```
 
 ### 自前のラッパーを使う
+テーブル一覧を見る
 ```
 $ sqlite3.pl db/development.sqlite3
 schema_migrations
@@ -50,6 +51,7 @@ table3
 ...
 ```
 
+テーブル`attributes`の中身を見る
 ```
 $ sqlite3.pl -F attributes db/development.sqlite3
 1       gene_chromosome_ensembl ensembl_gene    classification
@@ -58,6 +60,7 @@ $ sqlite3.pl -F attributes db/development.sqlite3
 ...
 ```
 
+テーブル`table1`の最初の10行を見る
 ```
 $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 1       root    root node               0               1       121284  25
