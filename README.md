@@ -82,12 +82,13 @@ $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 $ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 db/development.sqlite3
 ```
 
-ロードのためのINSERT文は:
+ロードに必要なINSERT文の例:
 ```
 insert into table54 (distribution, distribution_label, distribution_value, bin_id, bin_label) values ('A0A075B6T6', 'TVAL2_HUMAN', 2, '3', '2%');
+...
 ```
 
-JSONをSQLのINSERT文に変換してロードする
+JSONを変換して, SQLのINSERT文にしロードする
 ```
 $ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 db/development.sqlite3
 ```
