@@ -33,7 +33,7 @@ CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
 CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
 ```
 
-### 自前のラッパーを使う
+### ラッパーを使う
 テーブル一覧を見る
 ```
 $ sqlite3.pl db/development.sqlite3
