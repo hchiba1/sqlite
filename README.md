@@ -74,10 +74,11 @@ $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 ```
 
 ### distributionのロード例
+新しいテーブルを作る
 ```
 $ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 db/development.sqlite3
 ```
-
+JSONをSQLに変換してロードする
 ```
 $ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 db/development.sqlite3
 ```
