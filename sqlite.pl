@@ -12,14 +12,13 @@ my $USAGE=
 -k VAR: WHERE VAR=VAL
 -v VAL: HHERE VAR=VAL
 -s TABLE: schema of TABLE
--c: call sqlite3 command
 -H: omit header line
 -l: use list mode in sqlite3
 -q: show query and quit
 ";
 
 my %OPT;
-getopts('F:L:Ck:v:s:cHlq', \%OPT);
+getopts('F:L:Ck:v:s:Hlq', \%OPT);
 
 if (!@ARGV) {
     print STDERR $USAGE;
@@ -28,6 +27,7 @@ if (!@ARGV) {
 my ($DB) = @ARGV;
 
 my $QUERY;
+my $USE_SQLITE3 = 1;
 if ($OPT{s}) {
     system "echo '.schema $OPT{s}' | sqlite3 $DB";
     exit;
@@ -41,6 +41,7 @@ if ($OPT{s}) {
         $QUERY .= " where $OPT{k} = '$OPT{v}'";
     }
 } elsif (-t) {
+    $USE_SQLITE3 = 0;
     $QUERY = "select name from sqlite_master where type='table'";
 } else {
     $QUERY = <STDIN>;
@@ -54,7 +55,7 @@ if ($OPT{q}) {
     exit;
 }
 
-if ($OPT{c}) {
+if ($USE_SQLITE3) {
     open(PIPE, "| sqlite3 $DB") || die;
     if ($OPT{l}) {
     } else {
