@@ -11,6 +11,7 @@ my $USAGE=
 -C: count
 -k VAR: WHERE VAR=VAL
 -v VAL: HHERE VAR=VAL
+-s TABLE: schema of TABLE
 -c: call sqlite3 command
 -q: show query and quit
 ";
