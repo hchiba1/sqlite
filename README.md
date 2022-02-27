@@ -119,7 +119,7 @@ CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
 CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
 ```
 
-## TogoDXのロード例
+## TogoDXへのロード例
 ### distributionの場合
 * `attributes`テーブルに1行追加する
 ```
