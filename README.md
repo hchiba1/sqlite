@@ -3,7 +3,7 @@
 ### `sqlite3`コマンドを使う
 テーブルの一覧を見る
 ```
-$ echo '.tables' | sqlite3 db/development.sqlite3
+$ echo '.tables' | sqlite3 development.sqlite3
 ar_internal_metadata  table21               table4              
 attributes            table22               table40             
 classifications       table23               table41             
@@ -27,7 +27,7 @@ table20               table39               table9
 ```
 スキーマを見る
 ```
-$ echo '.schema table11' | sqlite3 db/development.sqlite3
+$ echo '.schema table11' | sqlite3 development.sqlite3
 CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
 CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
 CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
@@ -36,7 +36,7 @@ CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_v
 ### ラッパーを使う
 テーブル一覧を見る
 ```
-$ sqlite.pl db/development.sqlite3
+$ sqlite.pl development.sqlite3
 schema_migrations
 ar_internal_metadata
 attributes
@@ -53,7 +53,7 @@ table3
 
 テーブル`attributes`の中身を見る
 ```
-$ sqlite3.pl -F attributes db/development.sqlite3
+$ sqlite3.pl -F attributes development.sqlite3
 1       gene_chromosome_ensembl ensembl_gene    classification
 2       gene_number_of_paralogs_homologene      ncbigene        classification
 3       gene_evolutionary_conservation_homologene       ncbigene        classification
@@ -62,7 +62,7 @@ $ sqlite3.pl -F attributes db/development.sqlite3
 
 テーブル`table1`の最初の10行を見る
 ```
-$ sqlite3.pl -F table1 -L10 db/development.sqlite3
+$ sqlite3.pl -F table1 -L10 development.sqlite3
 1       root    root node               0               1       121284  25
 2       ENSG00000001617 SEMA3F  03      1       3       3       4       0
 3       03      chr3    root    0       1       2       6379    3188
@@ -79,12 +79,12 @@ $ sqlite3.pl -F table1 -L10 db/development.sqlite3
 ### distributionのロード例
 テーブル`attributes`に1行追加する
 ```
-echo 'insert into attributes values(54, "protein_helix_content_ratio_uniprot", "uniprot", "distribution");' | sqlite3 db/development.sqlite3
+echo 'insert into attributes values(54, "protein_helix_content_ratio_uniprot", "uniprot", "distribution");' | sqlite3 development.sqlite3
 ```
 
 新しいテーブルを作る
 ```
-$ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 db/development.sqlite3
+$ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 development.sqlite3
 ```
 
 ロードに必要なINSERT文の例:
@@ -95,5 +95,5 @@ insert into table54 (distribution, distribution_label, distribution_value, bin_i
 
 JSONを変換して, SQLのINSERT文にしロードする
 ```
-$ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 db/development.sqlite3
+$ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 development.sqlite3
 ```
