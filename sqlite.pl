@@ -19,7 +19,7 @@ my $USAGE=
 ";
 
 my %OPT;
-getopts('F:L:C:k:v:s:cHlq', \%OPT);
+getopts('F:L:Ck:v:s:cHlq', \%OPT);
 
 if (!@ARGV) {
     print STDERR $USAGE;
@@ -31,13 +31,12 @@ my $QUERY;
 if ($OPT{s}) {
     system "echo '.schema $OPT{s}' | sqlite3 $DB";
     exit;
-} elsif ($OPT{C}) {
-    $QUERY = "select count(*) from $OPT{C}";
-    if ($OPT{k} && $OPT{v}) {
-        $QUERY .= " where $OPT{k} = '$OPT{v}'";
-    }
 } elsif ($OPT{F}) {
-    $QUERY = "select * from $OPT{F}";
+    my $target = "*";
+    if ($OPT{C}) {
+        $target = "count(*)";
+    }
+    $QUERY = "select ${target} from $OPT{F}";
     if ($OPT{k} && $OPT{v}) {
         $QUERY .= " where $OPT{k} = '$OPT{v}'";
     }
