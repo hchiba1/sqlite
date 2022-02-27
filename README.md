@@ -21,7 +21,7 @@ table3
 
 * `-F TABLE`: テーブルの中身を見る
 ```
-$ sqlite3.pl -F attributes development.sqlite3
+$ sqlite.pl -F attributes development.sqlite3
 id      api     dataset datamodel
 1       gene_chromosome_ensembl ensembl_gene    classification
 2       gene_number_of_paralogs_homologene      ncbigene        classification
@@ -31,13 +31,13 @@ id      api     dataset datamodel
 
 * `-C -F TABLE`: 行数をカウントする
 ```
-$ sqlite3.pl -CF table1 development.sqlite3
+$ sqlite.pl -CF table1 development.sqlite3
 60642
 ```
 
 * `-L NUM`: 最初のNUM行を見る
 ```
-$ sqlite3.pl -F table1 -L10 development.sqlite3
+$ sqlite.pl -F table1 -L10 development.sqlite3
 id      classification  classification_label    classification_parent   leaf    parent_id       lft     rgt     count
 1       root    root node               0               1       121284  25
 2       ENSG00000001617 SEMA3F  03      1       3       3       4       0
@@ -54,7 +54,7 @@ id      classification  classification_label    classification_parent   leaf    
 
 * `-c`: columnモードで出力
 ```
-$ sqlite3.pl -c -F table1 -L10 development.sqlite3
+$ sqlite.pl -c -F table1 -L10 development.sqlite3
 id  api                                        dataset       datamodel     
 --  -----------------------------------------  ------------  --------------
 1   gene_chromosome_ensembl                    ensembl_gene  classification
