@@ -13,12 +13,13 @@ my $USAGE=
 -v VAL: HHERE VAR=VAL
 -s TABLE: schema of TABLE
 -H: omit header line
--l: use list mode in sqlite3
+-l: list mode
+-c: column mode
 -q: show query and quit
 ";
 
 my %OPT;
-getopts('F:L:Ck:v:s:Hlq', \%OPT);
+getopts('F:L:Ck:v:s:Hlcq', \%OPT);
 
 if (!@ARGV) {
     print STDERR $USAGE;
@@ -59,6 +60,8 @@ if ($OPT{q}) {
 if ($USE_SQLITE3) {
     open(PIPE, "| sqlite3 $DB") || die;
     if ($OPT{l}) {
+    } elsif ($OPT{c}) {
+        print PIPE ".mode column\n";
     } else {
         print PIPE ".mode tabs\n";
     }
