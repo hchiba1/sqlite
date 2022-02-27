@@ -20,6 +20,7 @@ table3
 `-F TABLE`: テーブルの中身を見る
 ```
 $ sqlite3.pl -F attributes development.sqlite3
+id      api     dataset datamodel
 1       gene_chromosome_ensembl ensembl_gene    classification
 2       gene_number_of_paralogs_homologene      ncbigene        classification
 3       gene_evolutionary_conservation_homologene       ncbigene        classification
@@ -29,6 +30,7 @@ $ sqlite3.pl -F attributes development.sqlite3
 `-L NUM`: 最初のNUM行を見る
 ```
 $ sqlite3.pl -F table1 -L10 development.sqlite3
+id      classification  classification_label    classification_parent   leaf    parent_id       lft     rgt     count
 1       root    root node               0               1       121284  25
 2       ENSG00000001617 SEMA3F  03      1       3       3       4       0
 3       03      chr3    root    0       1       2       6379    3188
@@ -46,6 +48,36 @@ $ sqlite3.pl -F table1 -L10 development.sqlite3
 ```
 $ sqlite3.pl -CF table1 development.sqlite3
 60642
+```
+
+```
+id  api                                        dataset       datamodel     
+--  -----------------------------------------  ------------  --------------
+1   gene_chromosome_ensembl                    ensembl_gene  classification
+2   gene_number_of_paralogs_homologene         ncbigene      classification
+3   gene_evolutionary_conservation_homologene  ncbigene      classification
+4   gene_high_level_expression_refex           ncbigene      classification
+5   gene_low_level_expression_refex            ncbigene      classification
+6   protein_domains_uniprot                    uniprot       classification
+7   protein_cellular_component_uniprot         uniprot       classification
+8   protein_biological_process_uniprot         uniprot       classification
+9   protein_molecular_function_uniprot         uniprot       classification
+10  protein_ligands_uniprot                    uniprot       classification
+
+```
+
+```
+id|api|dataset|datamodel
+1|gene_chromosome_ensembl|ensembl_gene|classification
+2|gene_number_of_paralogs_homologene|ncbigene|classification
+3|gene_evolutionary_conservation_homologene|ncbigene|classification
+4|gene_high_level_expression_refex|ncbigene|classification
+5|gene_low_level_expression_refex|ncbigene|classification
+6|protein_domains_uniprot|uniprot|classification
+7|protein_cellular_component_uniprot|uniprot|classification
+8|protein_biological_process_uniprot|uniprot|classification
+9|protein_molecular_function_uniprot|uniprot|classification
+10|protein_ligands_uniprot|uniprot|classification
 ```
 
 ### distributionのロード例
