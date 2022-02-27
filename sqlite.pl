@@ -34,6 +34,7 @@ if ($OPT{s}) {
 } elsif ($OPT{F}) {
     my $target = "*";
     if ($OPT{C}) {
+        $USE_SQLITE3 = 0;
         $target = "count(*)";
     }
     $QUERY = "select ${target} from $OPT{F}";
