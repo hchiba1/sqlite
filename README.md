@@ -1,39 +1,5 @@
-# sqlite3の操作例
+# sqliteの操作
 
-### `sqlite3`コマンドを使う
-テーブルの一覧を見る
-```
-$ echo '.tables' | sqlite3 development.sqlite3
-ar_internal_metadata  table21               table4              
-attributes            table22               table40             
-classifications       table23               table41             
-distributions         table24               table42             
-properties            table25               table43             
-relations             table26               table44             
-schema_migrations     table27               table45             
-table1                table28               table46             
-table10               table29               table47             
-table11               table3                table48             
-table12               table30               table49             
-table13               table31               table5              
-table14               table32               table50             
-table15               table33               table51             
-table16               table34               table52             
-table17               table35               table53             
-table18               table36               table6              
-table19               table37               table7              
-table2                table38               table8              
-table20               table39               table9 
-```
-スキーマを見る
-```
-$ echo '.schema table11' | sqlite3 development.sqlite3
-CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
-CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
-CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
-```
-
-### ラッパーを使う
 テーブル一覧を見る
 ```
 $ sqlite.pl development.sqlite3
@@ -96,4 +62,37 @@ insert into table54 (distribution, distribution_label, distribution_value, bin_i
 JSONを変換して, SQLのINSERT文にしロードする
 ```
 $ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 development.sqlite3
+```
+
+### `sqlite3`コマンドを使う
+テーブルの一覧を見る
+```
+$ echo '.tables' | sqlite3 development.sqlite3
+ar_internal_metadata  table21               table4              
+attributes            table22               table40             
+classifications       table23               table41             
+distributions         table24               table42             
+properties            table25               table43             
+relations             table26               table44             
+schema_migrations     table27               table45             
+table1                table28               table46             
+table10               table29               table47             
+table11               table3                table48             
+table12               table30               table49             
+table13               table31               table5              
+table14               table32               table50             
+table15               table33               table51             
+table16               table34               table52             
+table17               table35               table53             
+table18               table36               table6              
+table19               table37               table7              
+table2                table38               table8              
+table20               table39               table9 
+```
+スキーマを見る
+```
+$ echo '.schema table11' | sqlite3 development.sqlite3
+CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
+CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
+CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
 ```
