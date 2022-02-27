@@ -1,6 +1,8 @@
 # SQLiteデータベースの操作例
 
-オプションなし: テーブル一覧を見る
+`sqlite3`コマンドをラップした`sqlite.pl`を使う
+
+* オプションなし: テーブル一覧を見る
 ```
 $ sqlite.pl development.sqlite3
 schema_migrations
@@ -17,7 +19,7 @@ table3
 ...
 ```
 
-`-F TABLE`: テーブルの中身を見る
+* `-F TABLE`: テーブルの中身を見る
 ```
 $ sqlite3.pl -F attributes development.sqlite3
 id      api     dataset datamodel
@@ -27,13 +29,13 @@ id      api     dataset datamodel
 ...
 ```
 
-`-C -F TABLE`: 行数をカウントする
+* `-C -F TABLE`: 行数をカウントする
 ```
 $ sqlite3.pl -CF table1 development.sqlite3
 60642
 ```
 
-`-L NUM`: 最初のNUM行を見る
+* `-L NUM`: 最初のNUM行を見る
 ```
 $ sqlite3.pl -F table1 -L10 development.sqlite3
 id      classification  classification_label    classification_parent   leaf    parent_id       lft     rgt     count
@@ -50,7 +52,7 @@ id      classification  classification_label    classification_parent   leaf    
 ...
 ```
 
-`-c`: columnモードで出力
+* `-c`: columnモードで出力
 ```
 $ sqlite3.pl -c -F table1 -L10 development.sqlite3
 id  api                                        dataset       datamodel     
@@ -68,7 +70,7 @@ id  api                                        dataset       datamodel
 ...
 ```
 
-`-l`: listモードで出力
+* `-l`: listモードで出力
 ```
 id|api|dataset|datamodel
 1|gene_chromosome_ensembl|ensembl_gene|classification
@@ -84,30 +86,8 @@ id|api|dataset|datamodel
 ...
 ```
 
-### distributionのロード例
-テーブル`attributes`に1行追加する
-```
-echo 'insert into attributes values(54, "protein_helix_content_ratio_uniprot", "uniprot", "distribution");' | sqlite3 development.sqlite3
-```
-
-新しいテーブルを作る
-```
-$ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 development.sqlite3
-```
-
-ロードに必要なINSERT文の例:
-```
-insert into table54 (distribution, distribution_label, distribution_value, bin_id, bin_label) values ('A0A075B6T6', 'TVAL2_HUMAN', 2, '3', '2%');
-...
-```
-
-JSONを変換して, SQLのINSERT文にしロードする
-```
-$ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 development.sqlite3
-```
-
-## `sqlite3`コマンドを直接使った場合の例
-テーブルの一覧を見る
+## `sqlite3`コマンドを直接使う場合
+* テーブルの一覧を見る
 ```
 $ echo '.tables' | sqlite3 development.sqlite3
 ar_internal_metadata  table21               table4              
@@ -131,10 +111,33 @@ table19               table37               table7
 table2                table38               table8              
 table20               table39               table9 
 ```
-スキーマを見る
+* スキーマを見る
 ```
 $ echo '.schema table11' | sqlite3 development.sqlite3
 CREATE TABLE IF NOT EXISTS "table11" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);
 CREATE INDEX "index_table11_on_distribution" ON "table11" ("distribution");
 CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_value");
+```
+
+## TogoDXのロード例
+### distributionの場合
+* `attributes`テーブルに1行追加する
+```
+echo 'insert into attributes values(54, "protein_helix_content_ratio_uniprot", "uniprot", "distribution");' | sqlite3 development.sqlite3
+```
+
+* 新しいテーブルを作る
+```
+$ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "distribution" varchar NOT NULL, "distribution_label" varchar, "distribution_value" float NOT NULL, "bin_id" varchar, "bin_label" varchar);' | sqlite3 development.sqlite3
+```
+
+* JSONを変換して, SQLのINSERT文にしロードする
+```
+$ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 development.sqlite3
+```
+
+ロードする際のINSERT文の例:
+```
+insert into table54 (distribution, distribution_label, distribution_value, bin_id, bin_label) values ('A0A075B6T6', 'TVAL2_HUMAN', 2, '3', '2%');
+...
 ```
