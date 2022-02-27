@@ -5,7 +5,7 @@ use Getopt::Std;
 use JSON;
 my $PROGRAM = basename $0;
 my $USAGE=
-"Usage: $PROGRAM
+"Usage: $PROGRAM -t TABLE
 ";
 
 my %OPT;
@@ -13,7 +13,7 @@ getopts('t:', \%OPT);
 
 STDOUT->autoflush;
 
-my $TABLE = $OPT{t} || die;
+my $TABLE = $OPT{t} || die $USAGE;
 
 my @CONTENT = <>;
 
