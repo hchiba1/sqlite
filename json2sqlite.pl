@@ -15,16 +15,7 @@ STDOUT->autoflush;
 
 my $TABLE = $OPT{t} || die;
 
-if (!@ARGV) {
-    print STDERR $USAGE;
-    exit 1;
-}
-my ($FILE) = @ARGV;
-
-print STDERR "reading $FILE..\n";
-open(FILE, "$FILE") || die;
-my @CONTENT = <FILE>;
-close(FILE);
+my @CONTENT = <>;
 
 print STDERR "parsing JSON..\n";
 my $DATA = decode_json(join("", @CONTENT));
