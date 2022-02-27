@@ -46,6 +46,7 @@ if ($OPT{s}) {
 } else {
     $QUERY = <STDIN>;
 }
+
 if ($OPT{L}) {
     $QUERY .= " limit $OPT{L}";
 }
@@ -67,10 +68,9 @@ if ($USE_SQLITE3) {
     }
     print PIPE $QUERY;
     close(PIPE);
-    exit;
+} else {
+    query_db($QUERY, $DB);
 }
-
-query_db($QUERY, $DB);
 
 ################################################################################
 ### Functions ##################################################################
