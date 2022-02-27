@@ -42,9 +42,10 @@ $ sqlite3.pl -F table1 -L10 development.sqlite3
 ...
 ```
 
-`-C`: 行数をカウントする
+`-C -F TABLE`: 行数をカウントする
 ```
 $ sqlite3.pl -CF table1 development.sqlite3
+60642
 ```
 
 ### distributionのロード例
