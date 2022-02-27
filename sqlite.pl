@@ -17,7 +17,7 @@ my $USAGE=
 ";
 
 my %OPT;
-getopts('s:F:L:C:k:v:qc', \%OPT);
+getopts('F:L:C:k:v:s:cq', \%OPT);
 
 if (!@ARGV) {
     print STDERR $USAGE;
