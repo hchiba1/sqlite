@@ -1,4 +1,4 @@
-# sqliteの操作
+# SQLiteデータベースの操作例
 
 テーブル一覧を見る
 ```
@@ -64,7 +64,7 @@ JSONを変換して, SQLのINSERT文にしロードする
 $ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 development.sqlite3
 ```
 
-### `sqlite3`コマンドを使う
+## `sqlite3`コマンドを直接使った場合の例
 テーブルの一覧を見る
 ```
 $ echo '.tables' | sqlite3 development.sqlite3
