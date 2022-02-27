@@ -1,6 +1,6 @@
 # SQLiteデータベースの操作例
 
-テーブル一覧を見る
+オプションなし: テーブル一覧を見る
 ```
 $ sqlite.pl development.sqlite3
 schema_migrations
@@ -17,7 +17,7 @@ table3
 ...
 ```
 
-テーブル`attributes`の中身を見る
+`-F TABLE`: テーブルの中身を見る
 ```
 $ sqlite3.pl -F attributes development.sqlite3
 1       gene_chromosome_ensembl ensembl_gene    classification
@@ -26,7 +26,7 @@ $ sqlite3.pl -F attributes development.sqlite3
 ...
 ```
 
-テーブル`table1`の最初の10行を見る
+`-L NUM`: 最初のNUM行を見る
 ```
 $ sqlite3.pl -F table1 -L10 development.sqlite3
 1       root    root node               0               1       121284  25
