@@ -36,7 +36,7 @@ CREATE INDEX "index_table11_on_distribution_value" ON "table11" ("distribution_v
 ### ラッパーを使う
 テーブル一覧を見る
 ```
-$ sqlite3.pl db/development.sqlite3
+$ sqlite.pl db/development.sqlite3
 schema_migrations
 ar_internal_metadata
 attributes
