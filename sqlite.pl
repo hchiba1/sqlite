@@ -69,19 +69,28 @@ if ($OPT{c}) {
     exit;
 }
 
-my $dbh = DBI->connect("dbi:SQLite:dbname=$DB");
-my $sth = $dbh->prepare($QUERY);
-$sth->execute();
-while (my @row = $sth->fetchrow_array) {
-    print $row[0];
-    for (my $i=1; $i<@row; $i++) {
-        if (defined $row[$i]) {
-            print "\t", $row[$i];
-        } else {
-            print "\t";
+query_db($QUERY, $DB);
+
+################################################################################
+### Functions ##################################################################
+################################################################################
+sub query_db {
+    my ($query, $db) = @_;
+
+    my $dbh = DBI->connect("dbi:SQLite:dbname=$db");
+    my $sth = $dbh->prepare($query);
+    $sth->execute();
+    while (my @row = $sth->fetchrow_array) {
+        print $row[0];
+        for (my $i=1; $i<@row; $i++) {
+            if (defined $row[$i]) {
+                print "\t", $row[$i];
+            } else {
+                print "\t";
+            }
         }
+        print "\n";
     }
-    print "\n";
+    $sth->finish;
+    $dbh->disconnect;
 }
-$sth->finish;
-$dbh->disconnect;
