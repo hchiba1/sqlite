@@ -6,6 +6,13 @@ use DBI;
 my $PROGRAM = basename $0;
 my $USAGE=
 "Usage: $PROGRAM
+-F TABLE: FROM TABLE
+-L NUM: LIMIT NUM
+-C: count
+-k VAR: WHERE VAR=VAL
+-v VAL: HHERE VAR=VAL
+-c: call sqlite3 command
+-q: show query and quit
 ";
 
 my %OPT;
