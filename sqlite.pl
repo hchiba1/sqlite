@@ -29,8 +29,7 @@ my ($DB) = @ARGV;
 my $QUERY;
 my $USE_SQLITE3 = 1;
 if ($OPT{s}) {
-    system "echo '.schema $OPT{s}' | sqlite3 $DB";
-    exit;
+    $QUERY = ".schema $OPT{s}";
 } elsif ($OPT{F}) {
     my $target = "*";
     if ($OPT{C}) {
