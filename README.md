@@ -42,6 +42,11 @@ $ sqlite3.pl -F table1 -L10 development.sqlite3
 ...
 ```
 
+`-C`: 行数をカウントする
+```
+$ sqlite3.pl -CF table1 development.sqlite3
+```
+
 ### distributionのロード例
 テーブル`attributes`に1行追加する
 ```
