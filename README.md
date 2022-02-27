@@ -27,6 +27,12 @@ id      api     dataset datamodel
 ...
 ```
 
+`-C -F TABLE`: 行数をカウントする
+```
+$ sqlite3.pl -CF table1 development.sqlite3
+60642
+```
+
 `-L NUM`: 最初のNUM行を見る
 ```
 $ sqlite3.pl -F table1 -L10 development.sqlite3
@@ -44,13 +50,9 @@ id      classification  classification_label    classification_parent   leaf    
 ...
 ```
 
-`-C -F TABLE`: 行数をカウントする
+`-c`: columnモードで出力
 ```
-$ sqlite3.pl -CF table1 development.sqlite3
-60642
-```
-
-```
+$ sqlite3.pl -c -F table1 -L10 development.sqlite3
 id  api                                        dataset       datamodel     
 --  -----------------------------------------  ------------  --------------
 1   gene_chromosome_ensembl                    ensembl_gene  classification
@@ -63,9 +65,10 @@ id  api                                        dataset       datamodel
 8   protein_biological_process_uniprot         uniprot       classification
 9   protein_molecular_function_uniprot         uniprot       classification
 10  protein_ligands_uniprot                    uniprot       classification
-
+...
 ```
 
+`-l`: listモードで出力
 ```
 id|api|dataset|datamodel
 1|gene_chromosome_ensembl|ensembl_gene|classification
@@ -78,6 +81,7 @@ id|api|dataset|datamodel
 8|protein_biological_process_uniprot|uniprot|classification
 9|protein_molecular_function_uniprot|uniprot|classification
 10|protein_ligands_uniprot|uniprot|classification
+...
 ```
 
 ### distributionのロード例
