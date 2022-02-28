@@ -133,7 +133,7 @@ $ echo 'CREATE TABLE IF NOT EXISTS "table54" ("id" integer PRIMARY KEY AUTOINCRE
 
 * JSONを変換して, SQLのINSERT文にしロードする
 ```
-$ json2sqlite.pl -t table54 protein_helix_content_ratio.json | sqlite3 development.sqlite3
+$ distribution.json2sql.pl -t table54 protein_helix_content_ratio.json | sqlite3 development.sqlite3
 ```
 
 ロードする際のINSERT文の例:
