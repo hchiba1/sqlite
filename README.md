@@ -141,3 +141,8 @@ $ distribution.json2sql.pl -t table54 protein_helix_content_ratio.json | sqlite3
 insert into table54 (distribution, distribution_label, distribution_value, bin_id, bin_label) values ('A0A075B6T6', 'TVAL2_HUMAN', 2, '3', '2%');
 ...
 ```
+
+* テーブルを削除する場合
+```
+echo 'drop table table54;' | sqlite3 development.sqlite3
+```
