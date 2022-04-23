@@ -56,6 +56,9 @@ if args.import_file:
     query = '.mode tab\n'
     query += f'.import {args.import_file} {table_name}'
 
+if args.schema:
+    query = f'.schema {args.schema}'
+
 if args.quit:
     print(query)
     sys.exit()
