@@ -32,17 +32,17 @@ header = '.headers ON\n'
 if args.no_header:
     header = ''
 
-query = "SELECT *"
+query = 'SELECT *'
 if args.table:
     if args.count:
         header = ''
-        query = "SELECT COUNT(*)"
+        query = 'SELECT COUNT(*)'
     query += f' FROM {args.table}'
     if args.key and args.value:
         query += f' WHERE "{args.key}" = "{args.value}"'
 else:
     header = ''
-    query = "select name from sqlite_master where type='table'"
+    query = 'SELECT name FROM sqlite_master WHERE type="table"'
 
 if args.limit:
     query += f' LIMIT {args.limit}'
