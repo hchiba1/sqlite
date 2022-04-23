@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+import re
 import argparse
 import subprocess
 
@@ -14,7 +15,8 @@ parser.add_argument('-s', '--schema', help='schema of table')
 parser.add_argument('-H', '--no-header', action='store_true', help='omit header line')
 parser.add_argument('-l', '--list', action='store_true', help='list mode')
 parser.add_argument('-c', '--column', action='store_true', help='column mode')
-parser.add_argument('--import', action='store_true', help='import')
+parser.add_argument('-i', '--import_file', help='import fom tsv file')
+parser.add_argument('-j', '--import_table', help='import into table')
 parser.add_argument('-q', '--quit', action='store_true', help='show query and quit')
 args = parser.parse_args()
 
@@ -37,6 +39,13 @@ else:
 
 header = '.headers ON\n'
 query = mode + header + query
+
+if args.import_file:
+    table_name = re.sub('.tsv$', '', args.import_file)
+    if args.import_table:
+        table_name = args.import_table
+    query = '.mode tab\n'
+    query += f'.import {args.import_file} {table_name}'
 
 if args.quit:
     print(query)
